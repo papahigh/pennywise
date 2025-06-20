@@ -27,9 +27,10 @@ fun App() {
     PennywiseTheme {
         var showContent by remember { mutableStateOf(false) }
         Column(
-            modifier = Modifier
-                .safeContentPadding()
-                .fillMaxSize(),
+            modifier =
+                Modifier
+                    .safeContentPadding()
+                    .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Button(onClick = { showContent = !showContent }) {

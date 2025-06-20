@@ -12,21 +12,22 @@ import kotlin.test.assertEquals
 
 class ExampleTest : SharedTest() {
     @Test
-    fun `room framework should work`() = runTest {
-        context.db.categoryDao.create(
-            CategoryEntity(
-                name = "Test Category",
-                createdAt = LocalDateTime.now(),
-                updatedAt = LocalDateTime.now(),
-                type = CategoryType.Income,
-                icon =
-                CustomIconEntity(
-                    iconSymbol = "iconSymbol",
-                    background = BackgroundColor.Red,
+    fun `room framework should work`() =
+        runTest {
+            context.db.categoryDao.create(
+                CategoryEntity(
+                    name = "Test Category",
+                    createdAt = LocalDateTime.now(),
+                    updatedAt = LocalDateTime.now(),
+                    type = CategoryType.Income,
+                    icon =
+                        CustomIconEntity(
+                            iconSymbol = "iconSymbol",
+                            background = BackgroundColor.Red,
+                        ),
+                    displayOrder = 1,
                 ),
-                displayOrder = 1,
-            ),
-        )
-        assertEquals(1, context.db.categoryDao.count())
-    }
+            )
+            assertEquals(1, context.db.categoryDao.count())
+        }
 }

@@ -28,10 +28,11 @@ actual object TestContext {
         _current =
             PennywiseContext(
                 object : PennywiseFactory by delegateFactory {
-                    override fun createDatabase() = Room
-                        .inMemoryDatabaseBuilder(androidContext, PennywiseDatabase::class.java)
-                        .addTypeConverter(PennywiseTypeConverters())
-                        .build()
+                    override fun createDatabase() =
+                        Room
+                            .inMemoryDatabaseBuilder(androidContext, PennywiseDatabase::class.java)
+                            .addTypeConverter(PennywiseTypeConverters())
+                            .build()
                 },
             )
     }
