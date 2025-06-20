@@ -9,7 +9,6 @@ import io.papahgh.pennywise.config.getDirectory
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.Foundation.NSFileManager
 import platform.Foundation.NSURL
-import kotlin.test.AfterClass
 
 actual abstract class BaseSharedTest
 
@@ -22,7 +21,6 @@ actual object TestContext {
         _current = PennywiseContext(DefaultPennywiseFactory())
     }
 
-    @AfterClass
     actual fun tearDown() {
         listOf(DB_FILE, "$DB_FILE-wal", "$DB_FILE-shm", "$DB_FILE.lck").forEach {
             deleteFile(it)
