@@ -34,7 +34,7 @@ data class CategoryEntity(
     @ColumnInfo(name = "name")
     val name: String,
     @Embedded(prefix = "icon_")
-    val icon: CustomIconEntity,
+    val icon: IconEntity,
     @ColumnInfo(name = "type")
     val type: CategoryType,
     @ColumnInfo(name = "parent_id")

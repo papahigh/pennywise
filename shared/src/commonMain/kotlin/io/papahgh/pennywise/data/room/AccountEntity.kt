@@ -18,11 +18,13 @@ data class AccountEntity(
     @ColumnInfo(name = "name")
     val name: String,
     @Embedded(prefix = "icon_")
-    val icon: CustomIconEntity,
+    val icon: IconEntity,
     @ColumnInfo(name = "currency")
     val currency: String,
     @ColumnInfo(name = "archived")
     val archived: Boolean,
     @ColumnInfo(name = "excluded")
     val excluded: Boolean,
+    @ColumnInfo(name = "display_order")
+    val displayOrder: Int,
 )

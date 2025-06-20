@@ -77,5 +77,5 @@ dependencies {
 }
 
 room {
-    schemaDirectory("$projectDir/src/commonMain/room")
+    schemaDirectory("$projectDir/schemas")
 }

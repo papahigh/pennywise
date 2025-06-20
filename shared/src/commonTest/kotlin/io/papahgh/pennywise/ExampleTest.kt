@@ -3,7 +3,7 @@ package io.papahgh.pennywise
 import io.papahgh.pennywise.data.model.BackgroundColor
 import io.papahgh.pennywise.data.model.CategoryType
 import io.papahgh.pennywise.data.room.CategoryEntity
-import io.papahgh.pennywise.data.room.CustomIconEntity
+import io.papahgh.pennywise.data.room.IconEntity
 import io.papahgh.pennywise.utils.now
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDateTime
@@ -21,7 +21,7 @@ class ExampleTest : SharedTest() {
                     updatedAt = LocalDateTime.now(),
                     type = CategoryType.Income,
                     icon =
-                        CustomIconEntity(
+                        IconEntity(
                             iconSymbol = "iconSymbol",
                             background = BackgroundColor.Red,
                         ),

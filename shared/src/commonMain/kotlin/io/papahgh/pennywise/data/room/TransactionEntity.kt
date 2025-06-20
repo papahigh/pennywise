@@ -46,4 +46,6 @@ data class TransactionEntity(
     val valueCents: Int,
     @ColumnInfo(name = "description")
     val description: String? = null,
+    @ColumnInfo(name = "excluded")
+    val excluded: Boolean,
 )

@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "32659add9f8e83770cedcfb4080efbae",
+    "identityHash": "ac1298113f92421499f892a16681ed10",
     "entities": [
       {
         "tableName": "account",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `created_at` TEXT NOT NULL, `updated_at` TEXT NOT NULL, `name` TEXT NOT NULL, `currency` TEXT NOT NULL, `archived` INTEGER NOT NULL, `excluded` INTEGER NOT NULL, `icon_symbol` TEXT NOT NULL, `icon_background` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `created_at` TEXT NOT NULL, `updated_at` TEXT NOT NULL, `name` TEXT NOT NULL, `currency` TEXT NOT NULL, `archived` INTEGER NOT NULL, `excluded` INTEGER NOT NULL, `display_order` INTEGER NOT NULL, `icon_symbol` TEXT NOT NULL, `icon_background` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -47,6 +47,12 @@
           {
             "fieldPath": "excluded",
             "columnName": "excluded",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "displayOrder",
+            "columnName": "display_order",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -161,7 +167,7 @@
       },
       {
         "tableName": "transaction_record",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `created_at` TEXT NOT NULL, `updated_at` TEXT NOT NULL, `account_id` INTEGER NOT NULL, `category_id` INTEGER NOT NULL, `timestamp` TEXT NOT NULL, `value_cents` INTEGER NOT NULL, `description` TEXT, FOREIGN KEY(`account_id`) REFERENCES `account`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`category_id`) REFERENCES `category`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `created_at` TEXT NOT NULL, `updated_at` TEXT NOT NULL, `account_id` INTEGER NOT NULL, `category_id` INTEGER NOT NULL, `timestamp` TEXT NOT NULL, `value_cents` INTEGER NOT NULL, `description` TEXT, `excluded` INTEGER NOT NULL, FOREIGN KEY(`account_id`) REFERENCES `account`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`category_id`) REFERENCES `category`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -209,6 +215,12 @@
             "fieldPath": "description",
             "columnName": "description",
             "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "excluded",
+            "columnName": "excluded",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -265,7 +277,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '32659add9f8e83770cedcfb4080efbae')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ac1298113f92421499f892a16681ed10')"
     ]
   }
 }
