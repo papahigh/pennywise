@@ -16,8 +16,7 @@ actual class DefaultPennywiseFactory(
             .databaseBuilder<PennywiseDatabase>(
                 name = dbFile.absolutePath,
                 context = androidContext,
-            )
-            .setDriver(BundledSQLiteDriver())
+            ).setDriver(BundledSQLiteDriver())
             .setQueryCoroutineContext(Dispatchers.IO)
             .addTypeConverter(PennywiseTypeConverters())
             .build()
