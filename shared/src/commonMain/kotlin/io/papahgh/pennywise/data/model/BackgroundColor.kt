@@ -1,0 +1,26 @@
+package io.papahgh.pennywise.data.model
+
+enum class BackgroundColor {
+    Red,
+    Orange,
+    Amber,
+    Yellow,
+    Lime,
+    Green,
+    Emerald,
+    Teal,
+    Cyan,
+    Sky,
+    Blue,
+    Indigo,
+    Violet,
+    Purple,
+    Fuchsia,
+    Pink,
+    Rose,
+    Slate,
+    Gray,
+    Zinc,
+    Neutral,
+    Stone,
+}

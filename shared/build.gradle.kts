@@ -4,6 +4,8 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
 }
 
 kotlin {
@@ -27,11 +29,25 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            // put your Multiplatform dependencies here
+            implementation(libs.kotlinx.coroutines)
+            implementation(libs.kotlinx.datetime)
+            implementation(libs.androidx.room.runtime)
+            implementation(libs.androidx.sqlite.bundled)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+            implementation(libs.kotlinx.coroutines.test)
         }
+        androidUnitTest.dependencies {
+            implementation(libs.kotlin.testJunit)
+            implementation(libs.androidx.test.core)
+            implementation(libs.androidx.test.runner)
+            implementation(libs.robolectric)
+        }
+    }
+
+    compilerOptions {
+        freeCompilerArgs.add("-Xexpect-actual-classes")
     }
 }
 
@@ -51,4 +67,15 @@ android {
                 .get()
                 .toInt()
     }
+}
+
+dependencies {
+    add("kspAndroid", libs.androidx.room.compiler)
+    add("kspIosSimulatorArm64", libs.androidx.room.compiler)
+    add("kspIosX64", libs.androidx.room.compiler)
+    add("kspIosArm64", libs.androidx.room.compiler)
+}
+
+room {
+    schemaDirectory("$projectDir/src/commonMain/room")
 }
