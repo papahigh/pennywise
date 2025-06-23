@@ -8,7 +8,7 @@ data class AccountDetails(
     val updatedAt: LocalDateTime,
     val icon: IconModel,
     val name: String,
-    val currency: String,
+    val currency: CurrencyCode,
     val excluded: Boolean,
     val valueCents: Int,
     val displayOrder: Int,
