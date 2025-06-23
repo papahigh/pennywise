@@ -45,7 +45,7 @@ class TransactionRepositoryTest : SharedTest() {
 
             val expected =
                 original.copy(
-                    valueCents = -1000,
+                    valueCents = 2000,
                     description = "Updated Description",
                     timestamp = LocalDateTime.now(),
                 )

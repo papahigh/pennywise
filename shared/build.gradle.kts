@@ -31,6 +31,7 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.kotlinx.coroutines)
             implementation(libs.kotlinx.datetime)
+            implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.room.runtime)
             implementation(libs.androidx.sqlite.bundled)
         }

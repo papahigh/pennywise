@@ -57,7 +57,7 @@ object TestDataFactory {
             TransactionFormData(
                 category = categories[1].toSummary(2),
                 timestamp = LocalDateTime.now(),
-                valueCents = -1001,
+                valueCents = 1001,
                 description = "description2",
             ),
         )
