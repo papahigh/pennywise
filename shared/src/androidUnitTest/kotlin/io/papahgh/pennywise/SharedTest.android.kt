@@ -38,6 +38,7 @@ actual object TestContext {
     }
 
     actual fun tearDown() {
+        _current.db.close()
     }
 }
 

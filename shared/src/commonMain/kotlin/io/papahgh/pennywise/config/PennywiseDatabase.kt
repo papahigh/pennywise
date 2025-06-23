@@ -28,13 +28,13 @@ import kotlinx.datetime.format
 @TypeConverters(PennywiseTypeConverters::class)
 @ConstructedBy(PennywiseDatabaseConstructor::class)
 abstract class PennywiseDatabase : RoomDatabase() {
-    abstract val accountDao: AccountDao
-    abstract val categoryDao: CategoryDao
-    abstract val transactionDao: TransactionDao
+    internal abstract val accountDao: AccountDao
+    internal abstract val categoryDao: CategoryDao
+    internal abstract val transactionDao: TransactionDao
 }
 
 @Suppress("NO_ACTUAL_FOR_EXPECT")
-expect object PennywiseDatabaseConstructor : RoomDatabaseConstructor<PennywiseDatabase> {
+internal expect object PennywiseDatabaseConstructor : RoomDatabaseConstructor<PennywiseDatabase> {
     override fun initialize(): PennywiseDatabase
 }
 
