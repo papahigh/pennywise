@@ -19,7 +19,7 @@ import org.koin.dsl.module
 import org.koin.dsl.onClose
 import kotlin.reflect.KClass
 
-class PennywiseContext(
+class PennywiseContext private constructor(
     private val factory: PennywiseFactory,
     private val appDeclaration: KoinAppDeclaration = {},
 ) : AutoCloseable {
@@ -55,4 +55,13 @@ class PennywiseContext(
     ) = koinApp.koin.get<T>(clazz, qualifier, parameters)
 
     override fun close() = stopKoin()
+
+    companion object {
+        fun of(factory: PennywiseFactory) = PennywiseContext(factory)
+
+        fun of(
+            factory: PennywiseFactory,
+            appDeclaration: KoinAppDeclaration,
+        ) = PennywiseContext(factory, appDeclaration)
+    }
 }

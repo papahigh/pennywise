@@ -18,7 +18,7 @@ actual object TestContext {
         get() = _current
 
     actual fun setUp() {
-        _current = PennywiseContext(DefaultPennywiseFactory())
+        _current = PennywiseContext.of(DefaultPennywiseFactory())
     }
 
     actual fun tearDown() {

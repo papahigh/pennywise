@@ -26,7 +26,7 @@ actual object TestContext {
         val androidContext = instrumentation.targetContext
         val delegateFactory = DefaultPennywiseFactory(androidContext)
         _current =
-            PennywiseContext(
+            PennywiseContext.of(
                 object : PennywiseFactory by delegateFactory {
                     override fun createDatabase() =
                         Room
