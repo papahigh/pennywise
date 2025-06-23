@@ -6,6 +6,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import io.papahgh.pennywise.data.model.CategorySummary
 import io.papahgh.pennywise.data.model.CategoryType
 import kotlinx.datetime.LocalDateTime
 
@@ -23,7 +24,7 @@ import kotlinx.datetime.LocalDateTime
         ),
     ],
 )
-data class CategoryEntity(
+internal data class CategoryEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val id: Int = 0,
@@ -42,3 +43,11 @@ data class CategoryEntity(
     @ColumnInfo(name = "display_order")
     val displayOrder: Int,
 )
+
+internal fun CategoryEntity.toModelSummary() =
+    CategorySummary(
+        id = id,
+        name = name,
+        icon = icon.toModel(),
+        type = type,
+    )

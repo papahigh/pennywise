@@ -28,7 +28,7 @@ import kotlinx.datetime.LocalDateTime
         ),
     ],
 )
-data class TransactionEntity(
+internal data class TransactionEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val id: Int = 0,
@@ -45,7 +45,5 @@ data class TransactionEntity(
     @ColumnInfo(name = "value_cents")
     val valueCents: Int,
     @ColumnInfo(name = "description")
-    val description: String? = null,
-    @ColumnInfo(name = "excluded")
-    val excluded: Boolean,
+    val description: String,
 )
