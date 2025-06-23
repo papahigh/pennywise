@@ -22,6 +22,7 @@ actual object TestContext {
     }
 
     actual fun tearDown() {
+        _current.close()
         listOf(DB_FILE, "$DB_FILE-wal", "$DB_FILE-shm", "$DB_FILE.lck").forEach {
             deleteFile(it)
         }

@@ -1,6 +1,7 @@
 package io.papahgh.pennywise.data
 
 import io.papahgh.pennywise.SharedTest
+import io.papahgh.pennywise.config.PennywiseDatabase
 import io.papahgh.pennywise.data.model.BackgroundColor
 import io.papahgh.pennywise.data.model.CurrencyCode
 import io.papahgh.pennywise.data.model.IconModel
@@ -10,8 +11,8 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
 class AccountRepositoryTest : SharedTest() {
-    val repository: AccountRepository
-        get() = context.accounts
+    val repository by lazy { inject<AccountRepository>() }
+    val db by lazy { inject<PennywiseDatabase>() }
 
     @Test
     fun `should create account`() =
@@ -58,8 +59,8 @@ class AccountRepositoryTest : SharedTest() {
     fun `should delete account`() =
         runTest {
             repository.createAccount(TestDataFactory.accounts.first())
-            assertEquals(1, context.db.accountDao.count())
+            assertEquals(1, db.accountDao.count())
             repository.deleteAccount(1)
-            assertEquals(0, context.db.accountDao.count())
+            assertEquals(0, db.accountDao.count())
         }
 }

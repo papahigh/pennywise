@@ -11,7 +11,6 @@ class CategoryCreateViewModel(
     categoryType: CategoryType,
     private val repository: CategoryRepository,
 ) : CategoryFormViewModel(tempEmptyState(categoryType)) {
-
     override fun onSubmit() {
         viewModelScope.launch {
             repository.createCategory(formData)

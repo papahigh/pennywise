@@ -1,6 +1,7 @@
 package io.papahgh.pennywise.data
 
 import io.papahgh.pennywise.SharedTest
+import io.papahgh.pennywise.config.PennywiseDatabase
 import io.papahgh.pennywise.data.model.BackgroundColor
 import io.papahgh.pennywise.data.model.CategoryType
 import io.papahgh.pennywise.data.model.IconModel
@@ -11,8 +12,8 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
 class CategoryRepositoryTest : SharedTest() {
-    val repository: CategoryRepository
-        get() = context.categories
+    val repository by lazy { inject<CategoryRepository>() }
+    val db by lazy { inject<PennywiseDatabase>() }
 
     @Test
     fun `should create category`() =
@@ -56,8 +57,8 @@ class CategoryRepositoryTest : SharedTest() {
     fun `should delete category`() =
         runTest {
             repository.createCategory(TestDataFactory.categories.first())
-            assertEquals(1, context.db.categoryDao.count())
+            assertEquals(1, db.categoryDao.count())
             repository.deleteCategory(1)
-            assertEquals(0, context.db.categoryDao.count())
+            assertEquals(0, db.categoryDao.count())
         }
 }

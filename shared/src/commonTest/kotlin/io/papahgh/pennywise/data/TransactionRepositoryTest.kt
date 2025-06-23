@@ -1,6 +1,7 @@
 package io.papahgh.pennywise.data
 
 import io.papahgh.pennywise.SharedTest
+import io.papahgh.pennywise.config.PennywiseDatabase
 import io.papahgh.pennywise.data.model.now
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.LocalDateTime
@@ -9,12 +10,10 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
 class TransactionRepositoryTest : SharedTest() {
-    val accountRepository: AccountRepository
-        get() = context.accounts
-    val categoryRepository: CategoryRepository
-        get() = context.categories
-    val transactionRepository: TransactionRepository
-        get() = context.transactions
+    val accountRepository by lazy { inject<AccountRepository>() }
+    val categoryRepository by lazy { inject<CategoryRepository>() }
+    val transactionRepository by lazy { inject<TransactionRepository>() }
+    val db by lazy { inject<PennywiseDatabase>() }
 
     @Test
     fun `should create transaction`() =
@@ -66,8 +65,8 @@ class TransactionRepositoryTest : SharedTest() {
             accountRepository.createAccount(TestDataFactory.accounts.first())
             categoryRepository.createCategory(TestDataFactory.categories.first())
             transactionRepository.createTransaction(1, TestDataFactory.transactions.first())
-            assertEquals(1, context.db.transactionDao.count())
+            assertEquals(1, db.transactionDao.count())
             transactionRepository.deleteTransaction(1)
-            assertEquals(0, context.db.transactionDao.count())
+            assertEquals(0, db.transactionDao.count())
         }
 }

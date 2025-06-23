@@ -9,7 +9,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-abstract class AccountFormViewModel(initialValue: AccountFormData) : ViewModel() {
+abstract class AccountFormViewModel(
+    initialValue: AccountFormData,
+) : ViewModel() {
     private val _uiState = MutableStateFlow(initialValue)
     val uiState: StateFlow<AccountFormData> = _uiState.asStateFlow()
 
@@ -23,21 +25,16 @@ abstract class AccountFormViewModel(initialValue: AccountFormData) : ViewModel()
 
     fun isValid() = formData.name.isNotBlank()
 
-    fun onNameChange(name: String) =
-        _uiState.update { it.copy(name = name) }
+    fun onNameChange(name: String) = _uiState.update { it.copy(name = name) }
 
-    fun onCurrencyChange(currency: CurrencyCode) =
-        _uiState.update { it.copy(currency = currency) }
+    fun onCurrencyChange(currency: CurrencyCode) = _uiState.update { it.copy(currency = currency) }
 
-    fun onExcludedChange(excluded: Boolean) =
-        _uiState.update { it.copy(excluded = excluded) }
+    fun onExcludedChange(excluded: Boolean) = _uiState.update { it.copy(excluded = excluded) }
 
-    fun onIconSymbolChange(iconSymbol: String) =
-        _uiState.update { it.copy(icon = it.icon.copy(iconSymbol = iconSymbol)) }
+    fun onIconSymbolChange(iconSymbol: String) = _uiState.update { it.copy(icon = it.icon.copy(iconSymbol = iconSymbol)) }
 
     fun onIconBackgroundChange(iconBackground: BackgroundColor) =
         _uiState.update { it.copy(icon = it.icon.copy(background = iconBackground)) }
 
-    fun onInitialValueChange(initialValueCents: Int) =
-        _uiState.update { it.copy(initialValueCents = initialValueCents) }
+    fun onInitialValueChange(initialValueCents: Int) = _uiState.update { it.copy(initialValueCents = initialValueCents) }
 }

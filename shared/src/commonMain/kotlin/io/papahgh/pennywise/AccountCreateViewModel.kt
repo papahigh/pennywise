@@ -10,7 +10,6 @@ import kotlinx.coroutines.launch
 class AccountCreateViewModel(
     private val accountRepository: AccountRepository,
 ) : AccountFormViewModel(tempEmptyState()) {
-
     override fun onSubmit() {
         viewModelScope.launch {
             accountRepository.createAccount(formData)

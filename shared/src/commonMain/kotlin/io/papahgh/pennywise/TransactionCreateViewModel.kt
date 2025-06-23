@@ -13,7 +13,6 @@ class TransactionCreateViewModel(
     private val category: CategorySummary,
     private val transactionRepository: TransactionRepository,
 ) : TransactionFormViewModel(tempEmptyState(category)) {
-
     override fun onSubmit() {
         viewModelScope.launch {
             transactionRepository.createTransaction(accountId, formData)

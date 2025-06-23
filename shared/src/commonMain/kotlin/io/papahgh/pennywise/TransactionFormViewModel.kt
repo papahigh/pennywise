@@ -11,7 +11,6 @@ import kotlinx.datetime.LocalDateTime
 abstract class TransactionFormViewModel(
     initialValue: TransactionFormData,
 ) : ViewModel() {
-
     private val _uiState = MutableStateFlow(initialValue)
     val uiState = _uiState.asStateFlow()
 
@@ -25,15 +24,11 @@ abstract class TransactionFormViewModel(
 
     fun isValid() = formData.valueCents > 0
 
-    fun onCategoryChange(category: CategorySummary) =
-        _uiState.update { it.copy(category = category) }
+    fun onCategoryChange(category: CategorySummary) = _uiState.update { it.copy(category = category) }
 
-    fun onTimestampChange(timestamp: LocalDateTime) =
-        _uiState.update { it.copy(timestamp = timestamp) }
+    fun onTimestampChange(timestamp: LocalDateTime) = _uiState.update { it.copy(timestamp = timestamp) }
 
-    fun onValueCentsChange(valueCents: Int) =
-        _uiState.update { it.copy(valueCents = valueCents) }
+    fun onValueCentsChange(valueCents: Int) = _uiState.update { it.copy(valueCents = valueCents) }
 
-    fun onDescriptionChange(description: String) =
-        _uiState.update { it.copy(description = description) }
+    fun onDescriptionChange(description: String) = _uiState.update { it.copy(description = description) }
 }
