@@ -21,7 +21,7 @@ actual object TestContext {
 
     actual fun setUp() {
         _current =
-            PennywiseContext.of {
+            PennywiseContext.start {
                 val overrides =
                     module {
                         single<PreferencesRepository> { InMemoryPreferencesRepository() }

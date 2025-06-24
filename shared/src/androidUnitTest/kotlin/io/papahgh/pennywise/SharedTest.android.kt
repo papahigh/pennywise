@@ -32,7 +32,7 @@ actual object TestContext {
         val instrumentation = InstrumentationRegistry.getInstrumentation()
         val androidContext = instrumentation.targetContext
         _current =
-            PennywiseContext.of {
+            PennywiseContext.start {
                 val overrides =
                     module {
                         androidContext(androidContext)

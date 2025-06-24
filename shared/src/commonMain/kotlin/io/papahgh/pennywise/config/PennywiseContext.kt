@@ -43,9 +43,9 @@ class PennywiseContext private constructor(
 
     companion object {
         @Suppress("unused")
-        fun of() = of {}
+        fun start() = start {}
 
-        fun of(overrides: KoinAppDeclaration) =
+        fun start(overrides: KoinAppDeclaration) =
             PennywiseContext {
                 modules(platformModule, commonModule, databaseModule, repositoryModule, presentationModule)
                 overrides()
