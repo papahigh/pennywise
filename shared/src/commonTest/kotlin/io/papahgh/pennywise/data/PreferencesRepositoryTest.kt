@@ -18,14 +18,14 @@ class PreferencesRepositoryTest : SharedTest() {
     fun `should provide default values`() =
         runTest {
             val actual = repository.getPreferencesFlow().first()
-            assertEquals(PreferencesModel.DEFAULTS, actual)
+            assertEquals(PreferencesModel.DEFAULT_VALUE, actual)
         }
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `should update preferences`() =
         runTest {
-            val expectedValues = listOf(PreferencesModel.DEFAULTS)
+            val expectedValues = listOf(PreferencesModel.DEFAULT_VALUE)
 
             val actualValues = mutableListOf<PreferencesModel>()
             val job =

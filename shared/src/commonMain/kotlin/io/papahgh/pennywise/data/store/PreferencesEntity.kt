@@ -7,7 +7,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 internal data class PreferencesEntity(
     val defaultCurrency: CurrencyCode,
-)
+) {
+    companion object {
+        val DEFAULT_VALUE = PreferencesModel.DEFAULT_VALUE.toEntity()
+    }
+}
 
 internal fun PreferencesEntity.toModel() = PreferencesModel(defaultCurrency = defaultCurrency)
 

@@ -24,7 +24,7 @@ internal class DefaultPreferencesRepository(
 }
 
 internal class InMemoryPreferencesRepository : PreferencesRepository {
-    private val preferencesStore = MutableStateFlow(PreferencesModel.DEFAULTS)
+    private val preferencesStore = MutableStateFlow(PreferencesModel.DEFAULT_VALUE)
 
     override fun getPreferencesFlow(): Flow<PreferencesModel> = preferencesStore
 

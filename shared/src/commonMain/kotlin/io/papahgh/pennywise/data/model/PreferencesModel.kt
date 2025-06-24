@@ -4,6 +4,6 @@ data class PreferencesModel(
     val defaultCurrency: CurrencyCode,
 ) {
     companion object {
-        val DEFAULTS = PreferencesModel(CurrencyCode.USD)
+        val DEFAULT_VALUE = PreferencesModel(CurrencyCode.USD)
     }
 }

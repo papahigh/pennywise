@@ -47,7 +47,7 @@ class PennywiseContext private constructor(
 
         fun start(overrides: KoinAppDeclaration) =
             PennywiseContext {
-                modules(platformModule, commonModule, databaseModule, repositoryModule, presentationModule)
+                modules(commonModule, platformModule, databaseModule, repositoryModule, presentationModule)
                 overrides()
             }
     }

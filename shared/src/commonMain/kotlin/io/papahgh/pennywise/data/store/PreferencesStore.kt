@@ -3,7 +3,6 @@ package io.papahgh.pennywise.data.store
 import androidx.datastore.core.DataStoreFactory
 import androidx.datastore.core.okio.OkioSerializer
 import androidx.datastore.core.okio.OkioStorage
-import io.papahgh.pennywise.data.model.PreferencesModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.serialization.json.Json
@@ -42,7 +41,7 @@ private class JsonSerializer(
     private val json: Json,
 ) : OkioSerializer<PreferencesEntity> {
     override val defaultValue: PreferencesEntity
-        get() = PreferencesModel.DEFAULTS.toEntity()
+        get() = PreferencesEntity.DEFAULT_VALUE
 
     override suspend fun readFrom(source: BufferedSource): PreferencesEntity =
         json.decodeFromString(PreferencesEntity.serializer(), source.readUtf8())
