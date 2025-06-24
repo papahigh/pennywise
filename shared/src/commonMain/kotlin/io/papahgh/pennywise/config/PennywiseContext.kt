@@ -42,6 +42,7 @@ class PennywiseContext private constructor(
     override fun close() = stopKoin()
 
     companion object {
+        @Suppress("unused")
         fun of() = of {}
 
         fun of(overrides: KoinAppDeclaration) =
