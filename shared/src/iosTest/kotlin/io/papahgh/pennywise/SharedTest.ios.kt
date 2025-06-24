@@ -2,11 +2,13 @@
 
 package io.papahgh.pennywise
 
-import io.papahgh.pennywise.config.DefaultPennywiseFactory
 import io.papahgh.pennywise.config.PENNYWISE_DB_FILE_NAME
 import io.papahgh.pennywise.config.PennywiseContext
-import io.papahgh.pennywise.config.getDirectory
+import io.papahgh.pennywise.config.getDocumentDirectory
+import io.papahgh.pennywise.data.InMemoryPreferencesRepository
+import io.papahgh.pennywise.data.PreferencesRepository
 import kotlinx.cinterop.ExperimentalForeignApi
+import org.koin.dsl.module
 import platform.Foundation.NSFileManager
 import platform.Foundation.NSURL
 
@@ -18,7 +20,15 @@ actual object TestContext {
         get() = _current
 
     actual fun setUp() {
-        _current = PennywiseContext.of(DefaultPennywiseFactory())
+        _current =
+            PennywiseContext.of {
+                val overrides =
+                    module {
+                        single<PreferencesRepository> { InMemoryPreferencesRepository() }
+                    }
+
+                modules(overrides)
+            }
     }
 
     actual fun tearDown() {
@@ -29,7 +39,7 @@ actual object TestContext {
     }
 }
 
-private val DB_FILE = "${getDirectory()}/$PENNYWISE_DB_FILE_NAME"
+private val DB_FILE = "${getDocumentDirectory()}/$PENNYWISE_DB_FILE_NAME"
 
 @OptIn(ExperimentalForeignApi::class)
 private fun deleteFile(path: String) {

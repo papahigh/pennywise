@@ -19,4 +19,4 @@ internal fun randomCategoryIcon() =
         background = randomBackground(),
     )
 
-internal fun randomBackground() = BackgroundColor.entries.toTypedArray().random()
+internal fun randomBackground() = BackgroundColor.entries.random()

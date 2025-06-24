@@ -4,12 +4,17 @@ package io.papahgh.pennywise
 
 import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
-import io.papahgh.pennywise.config.DefaultPennywiseFactory
 import io.papahgh.pennywise.config.PennywiseContext
 import io.papahgh.pennywise.config.PennywiseDatabase
-import io.papahgh.pennywise.config.PennywiseFactory
 import io.papahgh.pennywise.config.PennywiseTypeConverters
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import org.junit.runner.RunWith
+import org.koin.android.ext.koin.androidContext
+import org.koin.dsl.module
+import org.koin.dsl.onClose
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
@@ -22,24 +27,29 @@ actual object TestContext {
     actual val current: PennywiseContext
         get() = _current
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     actual fun setUp() {
+        val instrumentation = InstrumentationRegistry.getInstrumentation()
         val androidContext = instrumentation.targetContext
-        val delegateFactory = DefaultPennywiseFactory(androidContext)
         _current =
-            PennywiseContext.of(
-                object : PennywiseFactory by delegateFactory {
-                    override fun createDatabase() =
-                        Room
-                            .inMemoryDatabaseBuilder(androidContext, PennywiseDatabase::class.java)
-                            .addTypeConverter(PennywiseTypeConverters())
-                            .build()
-                },
-            )
+            PennywiseContext.of {
+                val overrides =
+                    module {
+                        androidContext(androidContext)
+                        single { CoroutineScope(UnconfinedTestDispatcher() + SupervisorJob()) }
+                        single {
+                            Room
+                                .inMemoryDatabaseBuilder(androidContext, PennywiseDatabase::class.java)
+                                .addTypeConverter(PennywiseTypeConverters())
+                                .build()
+                        }.onClose { it?.close() }
+                    }
+
+                modules(overrides)
+            }
     }
 
     actual fun tearDown() {
         _current.close()
     }
 }
-
-private val instrumentation = InstrumentationRegistry.getInstrumentation()
