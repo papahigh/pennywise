@@ -3,6 +3,7 @@ package io.papahgh.pennywise.data
 import io.papahgh.pennywise.SharedTest
 import io.papahgh.pennywise.data.model.CurrencyCode
 import io.papahgh.pennywise.data.model.PreferencesModel
+import io.papahgh.pennywise.data.model.Theme
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -36,7 +37,12 @@ class PreferencesRepositoryTest : SharedTest() {
             advanceUntilIdle()
             assertEquals(expectedValues, actualValues)
 
-            val updatedModel = PreferencesModel(CurrencyCode.CNY)
+            val updatedModel =
+                PreferencesModel(
+                    currentTheme = Theme.DARK,
+                    defaultCurrency = CurrencyCode.CNY,
+                    isOnboardingComplete = true,
+                )
             repository.updatePreferences(updatedModel)
 
             advanceUntilIdle()
