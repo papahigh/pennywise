@@ -27,5 +27,5 @@ internal fun PreferencesModel.toEntity() =
     PreferencesEntity(
         currentTheme = currentTheme,
         defaultCurrency = defaultCurrency,
-        isOnboardingComplete = isOnboardingComplete
+        isOnboardingComplete = isOnboardingComplete,
     )

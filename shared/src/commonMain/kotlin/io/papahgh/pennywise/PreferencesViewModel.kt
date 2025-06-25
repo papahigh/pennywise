@@ -13,22 +13,20 @@ import kotlinx.coroutines.launch
 class PreferencesViewModel(
     private val preferencesRepository: PreferencesRepository,
 ) : ViewModel() {
+    val uiState =
+        preferencesRepository
+            .getPreferencesFlow()
+            .stateIn(
+                viewModelScope,
+                SharingStarted.WhileSubscribed(5000L),
+                PreferencesModel.DEFAULT_VALUE,
+            )
 
-    val uiState = preferencesRepository.getPreferencesFlow()
-        .stateIn(
-            viewModelScope,
-            SharingStarted.WhileSubscribed(5000L),
-            PreferencesModel.DEFAULT_VALUE,
-        )
+    fun onCurrentThemeChange(theme: Theme) = update(uiState.value.copy(currentTheme = theme))
 
-    fun onCurrentThemeChange(theme: Theme) =
-        update(uiState.value.copy(currentTheme = theme))
+    fun onOnboardingComplete() = update(uiState.value.copy(isOnboardingComplete = true))
 
-    fun onOnboardingComplete() =
-        update(uiState.value.copy(isOnboardingComplete = true))
-
-    fun onDefaultCurrencyChange(defaultCurrency: CurrencyCode) =
-        update(uiState.value.copy(defaultCurrency = defaultCurrency))
+    fun onDefaultCurrencyChange(defaultCurrency: CurrencyCode) = update(uiState.value.copy(defaultCurrency = defaultCurrency))
 
     private fun update(model: PreferencesModel) {
         viewModelScope.launch {

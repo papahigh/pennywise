@@ -6,11 +6,12 @@ data class PreferencesModel(
     val isOnboardingComplete: Boolean,
 ) {
     companion object {
-        val DEFAULT_VALUE = PreferencesModel(
-            currentTheme = Theme.SYSTEM,
-            defaultCurrency = CurrencyCode.USD,
-            isOnboardingComplete = false,
-        )
+        val DEFAULT_VALUE =
+            PreferencesModel(
+                currentTheme = Theme.SYSTEM,
+                defaultCurrency = CurrencyCode.USD,
+                isOnboardingComplete = false,
+            )
     }
 }
 
