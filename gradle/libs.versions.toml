@@ -1,5 +1,5 @@
 [versions]
-agp = "8.10.1"
+agp = "8.11.0"
 android-compileSdk = "35"
 android-minSdk = "26"
 android-targetSdk = "35"
@@ -10,22 +10,24 @@ androidx-core = "1.16.0"
 androidx-datastore = "1.1.7"
 androidx-espresso = "3.6.1"
 androidx-room = "2.7.2"
-androidx-lifecycle = "2.9.0"
+androidx-lifecycle = "2.9.1"
 androidx-testExt = "1.2.1"
 androidx-test-runner = "1.7.0-alpha03"
 androidx-test-core = "1.7.0-alpha03"
 composeMultiplatform = "1.8.2"
 junit = "4.13.2"
-kotlin = "2.1.21"
+kotlin = "2.2.0"
 kotlinx-coroutines = "1.10.2"
 kotlinx-datetime = "0.6.2"
 kotlinx-serialization = "1.8.1"
 koin = "4.1.0"
-ksp = "2.1.21-2.0.2"
+ksp = "2.2.0-2.0.2"
 okio = "3.13.0"
-robolectric = "4.14.1"
-sqlite = "2.5.1"
-spotless = "7.0.3"
+robolectric = "4.15.1"
+sqlite = "2.5.2"
+spotless = "7.0.4"
+lifecycleRuntimeKtx = "2.9.1"
+composeBom = "2025.06.01"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -57,6 +59,15 @@ androidx-sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.r
 androidx-test-core = { module = "androidx.test:core", version.ref = "androidx-test-core" }
 androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidx-test-runner" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -68,3 +79,4 @@ kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 room = { id = "androidx.room", version.ref = "androidx-room" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
