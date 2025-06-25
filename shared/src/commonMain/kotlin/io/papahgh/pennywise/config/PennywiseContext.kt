@@ -2,6 +2,7 @@ package io.papahgh.pennywise.config
 
 import io.papahgh.pennywise.AccountCreateViewModel
 import io.papahgh.pennywise.CategoryCreateViewModel
+import io.papahgh.pennywise.PreferencesViewModel
 import io.papahgh.pennywise.TransactionCreateViewModel
 import io.papahgh.pennywise.data.AccountRepository
 import io.papahgh.pennywise.data.CategoryRepository
@@ -81,4 +82,5 @@ private val presentationModule =
         viewModel { AccountCreateViewModel(get()) }
         viewModel { params -> CategoryCreateViewModel(params.get(), get()) }
         viewModel { params -> TransactionCreateViewModel(params.get(), params.get(), get()) }
+        viewModel { PreferencesViewModel(get()) }
     }
