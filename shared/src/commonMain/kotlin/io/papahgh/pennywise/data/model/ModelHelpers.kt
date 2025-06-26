@@ -5,18 +5,18 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
-internal fun LocalDateTime.Companion.now(): LocalDateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
+fun LocalDateTime.Companion.now(): LocalDateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
 
-internal fun randomAccountIcon() =
+fun randomAccountIcon() =
     IconModel(
         iconSymbol = arrayOf("💰", "💵").random(),
         background = randomBackground(),
     )
 
-internal fun randomCategoryIcon() =
+fun randomCategoryIcon() =
     IconModel(
         iconSymbol = arrayOf("💰", "💵").random(),
         background = randomBackground(),
     )
 
-internal fun randomBackground() = BackgroundColor.entries.random()
+fun randomBackground() = BackgroundColor.entries.random()
