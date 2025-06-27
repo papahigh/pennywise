@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">Pennywise</string>
+    <string name="appName">Pennywise</string>
+    <plurals name="transactionCount">
+        <item quantity="one">1 transaction</item>
+        <item quantity="other">%s transactions</item>
+    </plurals>
+    <string name="iconEditor_iconColor_label">Color</string>
+    <string name="iconEditor_iconColor_description">Selected Color</string>
+    <string name="iconEditor_iconSymbol_label">Symbol</string>
 </resources>
